@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin="crossorigin">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100;1,400&display=swap"
+            rel="stylesheet">
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <title>cuadritos - eCommerce</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="container">
+                <div class="navbar">
+                    <label for="check" class="checkBtn"> <span class="material-symbols-outlined">
+                        menu
+                        </span></label>
+                        
+                    <div class="logo">
+                        <img src="img/logo98-removebg-preview.png" width="125px">
+                    </div>
+                    <nav>
+                        <input type="checkbox" name="" id="check">
+                        <ul class="submenu2">
+                      
+                            <li>
+                                <a href="">Home</a>
+                            </li>
+                            <li>
+                                <a href="#sectionProductos">Productos</a>
+                            </li>
+                            <li>
+                                <a href="./pages/cargaArticulos.html">Carga articulos</a>
+                            </li>
+                            <li>
+                                <a href="#futer">Contacto</a>
+                            </li>
+
+                        </ul>
+
+
+                    </nav>
+                    
+                    <div >
+                        <label for="check1" class="checkBtn1"> <img src="img/cart.png" alt="" width="30px" height="30px"></label>
+                        
+                        <ul>
+                            <input type="checkbox" name="" id="check1">
+                            <li class="submenu" id="carImg">
+                                
+                                <div id="carritos">
+                                    <table id="listaCarritos" class="u-full-width">
+                                        <thead id="thread">
+                                            <tr>
+
+                                                <th>Cuadro</th>
+                                                <th>Nombre</th>
+                                                <th>Precio</th>
+
+                                            </tr>
+
+                                        </thead>
+                                        <tbody></tbody>
+                                        <tr>
+
+                                            <th>Total</th>
+                                            <th></th>
+                                            <th id="thread2"></th>
+
+                                        </tr>
+                                    </table>
+                                    <a
+                                        href="./pages/finalizarCompra.html"
+                                        id="vaciarCarritos"
+                                        class="button u-full-width">Comprar</a>
+
+                                </div>
+                                
+                            </li>
+                            
+                        </ul>
+                        
+                    </div>
+                    
+                </div>
+              
+                <div class="row">
+                    <div class="col-2">
+                        <h1>Decora tu casa<br>
+                            con piezas únicas</h1>
+                        <p>Cuadritos es el primer eCommerce de Cuadros de ilustradores digitales. <b> <br> ¡No lo pienses mucho! </b>Al ser piezas únicas, el stock <b> es limitado.</b> Cada vez que queden menos unidades, sube su valor en el mercado&#128640;</p>
+                        <a href="#sectionProductos" class="btnLink">Ir a los productos&#8594;
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <img src="img/image1.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section >
+            <div class="sectionProductos1">
+                <div class="search-input">
+                    <input
+                        type="text"
+                        id="buscador"
+                        class="inputBuscador inputContainer"
+                        placeholder="Buscar cuadro aqui">
+                    <span id="botonBuscador" class="material-symbols-outlined icono ">search</span>
+
+                </div>
+
+            </div>
+            <div id="sectionProductos" class="sectionProductos">
+        </section>
+
+            <!----------------------footer---------------->
+        <section >
+                <div class="footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="footer-col-1">
+                                <h3>Descarga la app</h3>
+                                <p>Descargala en Android o iPhone</p>
+                                <div class="app-logo">
+                                    <img src="img/app-store.png" alt="">
+                                    <img src="img/play-store.png" alt="">
+
+                                </div>
+                            </div>
+                            <div class="footer-col-2">
+                                <img src="img/logo98-removebg-preview.png" alt="">
+                                <p>El primer eCommerce de NFTs que son convertidos en cuadros</p>
+                            </div>
+                            <div class="footer-col-3">
+                                <h3>Menú</h3>
+                                <ul>
+                                    <li>Blog</li>
+                                    <li>Como funciona</li>
+                                    <li>Productos</li>
+                                    <li>Carga articulos</li>
+                                </ul>
+                            </div>
+                            <div class="footer-col-4">
+                                <h3>Siguenos</h3>
+                                <ul>
+                                    <li>
+                                        <a href="#"></a>
+                                        Facebook</li>
+                                    <li>
+                                        <a href="#"></a>
+                                        Twitter</li>
+                                    <li>
+                                        <a href="#"></a>
+                                        Instagram</li>
+                                    <li>
+                                        <a href="#"></a>
+                                        Youtube</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr>
+                        <p id="futer" class="coderhouse">Trabajo final para proyecto de carrera frontEnd en Coderhouse (2022)</p>
+                    </div>
+                </div>
+            
+        </section>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="main.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    </body>
+</html>
