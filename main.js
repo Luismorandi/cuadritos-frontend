@@ -2,7 +2,7 @@
 class DatosRepository {
   async axiosGetProducts() {
     try {
-      const response = await axios.get('http://localhost:3100/manage-products');
+      const response = await axios.get('https://carritos-refactor-api-production.up.railway.app/manage-products');
       return response.data;
     } catch (error) {
       console.error('Ocurrió un error:', error);
