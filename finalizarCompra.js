@@ -1,15 +1,12 @@
 // Repositorio de datos
 class DatosRepository {
-    async axiosCreateOrder(items, products) {
+    async axiosCreateOrder(items, form) {
+      const body = {
+        "items": items,
+        "form": form, 
+      }
       try {
-        const response = await axios.post('https://carritos-refactor-api-production.up.railway.app/manage-orders', {items, products}, {
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Headers': 'origin, content-type',
-             ' Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
-             'Access-Control-Allow-Credentials': 'true'
-            }
-          });
+        const response = await axios.post('https://carritos-refactor-api-production.up.railway.app/manage-orders',body);
         return response.data;
       } catch (error) {
         console.error('Ocurrió un error:', error);
@@ -202,10 +199,10 @@ function restarStock() {
 //FUNCION PARA ATUALIZAR EL PRECIO DEL CUADRO UNA VEZ QUE SE RESTA EL STOCK// 
 function nuevoPrecio() {
         for (producto of carritoCompras){
-            let objeto= listaProductos.find((obj) =>    producto.id === obj.id);
+            let objeto= listaProductos.find((obj) =>    producto.id === obj._id);
             let indice = listaProductos.indexOf(objeto)
-            let nuevoPrecio = (((100- ((objeto.cantidad *100) / objeto.cantidadPrecio )) /100) +1 )  *  objeto.precio;
-            listaProductos.splice(indice,1, {nombre: `${objeto.nombre}`, precioPrincipal: parseInt(`${objeto.precioPrincipal}`), precio: parseInt(`${nuevoPrecio}`), cantidad: parseInt(`${objeto.cantidad}`), cantidadPrecio: parseInt(`${objeto.cantidadPrecio}`),  id: parseInt(`${objeto.id}`)})
+            let nuevoPrecio = (((100- ((objeto.stock *100) / objeto.stockPrice )) /100) +1 )  *  objeto.price;
+            listaProductos.splice(indice,1, {nombre: `${objeto.name}`, precioPrincipal: parseInt(`${objeto.principalPrice}`), precio: parseInt(`${nuevoPrecio}`), cantidad: parseInt(`${objeto.stock}`), cantidadPrecio: parseInt(`${objeto.stockPrice}`),  id: parseInt(`${objeto._id}`)})
             localStorage.setItem(`productos`, JSON.stringify(listaProductos));
 
     }}
@@ -214,7 +211,7 @@ function nuevoPrecio() {
 //FUNCION QUE SE ACTIVA CUANDO APRIETAS EL BOTON COMPRAR// 
    async function comprarCarritoCompras ()
    {
-    await repository.axiosCreateOrder(carritoCompras, {email:"ja", name: "jaa", lastName:"jaj", adress:"isisbh"} )
+    await repository.axiosCreateOrder(carritoCompras, {email:"ja@gmail.com", name: "jaa", lastName:"jaj", adress:"isisbh"} )
        restarStock();
        nuevoPrecio();
         carritoCompras = [];
