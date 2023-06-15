@@ -1,3 +1,68 @@
+// Repositorio de datos
+class DatosRepository {
+    async axiosCreateOrder(items, products) {
+      try {
+        const response = await axios.post('https://carritos-refactor-api-production.up.railway.app/manage-orders', {items, products}, {
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': 'origin, content-type',
+             ' Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+             'Access-Control-Allow-Credentials': 'true'
+            }
+          });
+        return response.data;
+      } catch (error) {
+        console.error('Ocurrió un error:', error);
+      }
+    }
+  
+    async axiosAddProducts(product) {
+      const body = [{
+        "name": product.name,
+        "principalPrice": product.principalPrice,
+        "stockPrice": product.stockPrice
+      }];
+  
+      try {
+        const response = await axios.post('https://carritos-refactor-api-production.up.railway.app/manage-products/add-products', body);
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  
+    obtenerDatosLocalStorage(clave) {
+      const datosString = localStorage.getItem(clave);
+      return JSON.parse(datosString);
+    }
+  
+    guardarDatosLocalStorage(clave, datos) {
+      const datosString = JSON.stringify(datos);
+      localStorage.setItem(clave, datosString);
+    }
+  
+    eliminarDatosLocalStorage(clave) {
+      localStorage.removeItem(clave);
+    }
+  }
+  
+  // Singleton para acceder al Repositorio de datos
+  class RepositorioDatos {
+    constructor() {
+      if (!RepositorioDatos.instance) {
+        RepositorioDatos.instance = new DatosRepository();
+      }
+    }
+  
+    getInstance() {
+      return RepositorioDatos.instance;
+    }
+  }
+  
+  // Uso del repositorio de datos
+  const repository = new RepositorioDatos().getInstance();
+
+
 /*-----------------------------------ARRAYS DEL PROYECTO--------------------------------*/
 localStorage.getItem(`productos`) === null ? listaProductos = [{nombre: 'Cuadro 1', precioPrincipal:1500, precio: 1500, cantidad: 10, cantidadPrecio: 10, id: 0},{nombre: 'Cuadro 2', precioPrincipal:2500, precio: 2500, cantidad: 10, cantidadPrecio: 10, id: 1},{nombre: 'Cuadro 3', precioPrincipal:1000, precio: 1000, cantidad: 10, cantidadPrecio: 10, id: 2},{nombre: 'Cuadro 4',precioPrincipal:11500, precio: 11500, cantidad: 10, cantidadPrecio: 10, id: 3}]: listaProductos= JSON.parse(localStorage.getItem(`productos`));
 let carritoCompras = []; // son los objetos que van a ser agregados al carritos desde los objetos del ecommerce (listaProductos)
@@ -38,8 +103,8 @@ function  comprarCarrito (carritoCompras) {
    `<td>
    <img src="../img/Cuadro1.PNG" width= 100>
    </td>
-   <td>${carritoCompras.nombre}</td>
-   <td>$${carritoCompras.precio}</td>
+   <td>${carritoCompras.name}</td>
+   <td>$${carritoCompras.price}</td>
  ` 
    document.getElementById("thread3").appendChild(tr);
 }
@@ -55,10 +120,10 @@ function  printItemToCart (carritoCompras) {
    `<td>
    <img src="../img/Cuadro1.PNG" width= 100>
    </td>
-   <td>${carritoCompras.nombre}</td>
-   <td>$${carritoCompras.precio}</td>
+   <td>${carritoCompras.name}</td>
+   <td>$${carritoCompras.price}</td>
    <td>
-   <a href="#" class="borrar-platillo" onclick = deleteProductToCart(${carritoCompras.id})> X </a>
+   <a href="#" class="borrar-platillo" onclick = deleteProductToCart(${carritoCompras._id})> X </a>
    </td> ` 
    document.getElementById("thread").appendChild(tr);
 }
@@ -128,9 +193,9 @@ function eliminarCarritoCompras(){
 //FUNCION PARA RESTAR LA CANTIDAD DE CUADROS DEL LOCAL STORAGE// 
 function restarStock() {
         for (producto of carritoCompras){
-            let objeto= listaProductos.find((obj) =>    producto.id === obj.id);
+            let objeto= listaProductos.find((obj) =>    producto.id === obj._id);
             let indice = listaProductos.indexOf(objeto)
-            listaProductos.splice(indice,1, {nombre: `${objeto.nombre}`, precioPrincipal: parseInt(`${objeto.precioPrincipal}`), precio: parseInt(`${objeto.precio}`), cantidad: parseInt(`${objeto.cantidad -1}`), cantidadPrecio: parseInt(`${objeto.cantidadPrecio}`),  id: parseInt(`${objeto.id}`)})
+            listaProductos.splice(indice,1, {nombre: `${objeto.name}`, precioPrincipal: parseInt(`${objeto.principalPrice}`), precio: parseInt(`${objeto.price}`), cantidad: parseInt(`${objeto.stock -1}`), cantidadPrecio: parseInt(`${objeto.stockPrice}`),  id: parseInt(`${objeto._id}`)})
             localStorage.setItem(`productos`, JSON.stringify(listaProductos));
             
     }}
@@ -147,9 +212,9 @@ function nuevoPrecio() {
 
     
 //FUNCION QUE SE ACTIVA CUANDO APRIETAS EL BOTON COMPRAR// 
-   function  comprarCarritoCompras ()
+   async function comprarCarritoCompras ()
    {
-       
+    await repository.axiosCreateOrder(carritoCompras, {email:"ja", name: "jaa", lastName:"jaj", adress:"isisbh"} )
        restarStock();
        nuevoPrecio();
         carritoCompras = [];
