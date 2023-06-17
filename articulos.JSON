@@ -1,7 +1,0 @@
-[]
-    {"nombre": "Cuadro 1", "precio": 1500, "cantidad": 10, "cantidadPrecio": 10, "id": 0}
-    {"nombre": "Cuadro 2", "precio": 2500, "cantidad": 10, "cantidadPrecio": 10, "id": 1}
-    {"nombre": "Cuadro 3", "precio": 1000, "cantidad": 10, "cantidadPrecio": 10, "id": 2}
-    {"nombre": "Cuadro 4", "precio": 11500, "cantidad": 10, "cantidadPrecio": 10, "id": 3}
-
-}
